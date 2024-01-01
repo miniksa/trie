@@ -3,7 +3,7 @@ Over holiday 2023, I decided to try to play around to find an efficient way to s
 
 The point of this is to make a little C# one that will take tons of file system paths and keep them compressed yet searchable in memory. Ideally one should be able to reference any given leaf and work back up to get the whole path when necessary.
 However, most consumers I've seen who want to look at paths anyway don't want the actual full string in the first place. They want to do StartsWith, EndsWith, or Contains on the paths to find ones that fall under a directory, have a specific extension, or have a partial filename match.
-All of these should be possible without fully resynthesizing the trie nodes to a string first. Though I haven't implemented all of them up front, they should be relatively 
+All of these should be possible without fully resynthesizing the trie nodes to a string first. Though I haven't implemented all of them up front, they should be relatively easy.
 
 The other thing I want to encompass here is absolutely minimizing allocations. The other examples I've seen of this often don't care about how many nodes or substrings or whatnot that they allocate. As such, I created several block pools that make big honking chunks of bytes or whatnot and dole them out instead of new new newing everything up and adding all that overhead to heap management and the garbage collector.
 
